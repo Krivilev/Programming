@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krivilev Alexey</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 30px auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+<body>
+    <label>(Вариант №17)</label>
+    
+    <table>
+        <tr>
+            <th>Курс AFN к PLN</th>
+            <th>Курс AFN к SEK</th>
+        </tr>
+        <tr>
+            <td id="afn-to-pln"></td>
+            <td id="afn-to-sek"></td>
+        </tr>
+    </table>
+  
+    <script>
+        async function getRates() {
+            let afnUrl = "https://api.nbrb.by/exrates/rates/467";
+            let plnUrl = "https://api.nbrb.by/exrates/rates/452";
+            let sekUrl = "https://api.nbrb.by/exrates/rates/464";
+
+            let response = await fetch(afnUrl);
+            let result = await response.json();
+            let afnRate = result.Cur_OfficialRate / 10;
+
+            response = await fetch(plnUrl);
+            result = await response.json();
+            let plnRate = result.Cur_OfficialRate;
+
+            response = await fetch(sekUrl);
+            result = await response.json();
+            let sekRate = result.Cur_OfficialRate;
+
+            let afnToPln = afnRate / plnRate;
+            document.getElementById("afn-to-pln").innerHTML = afnToPln.toFixed(4);
+
+            let afnToSek = afnRate / sekRate;
+            document.getElementById("afn-to-sek").innerHTML = afnToSek.toFixed(4);
+        }
+  
+        getRates();
+    </script>
+</body>
+</html>

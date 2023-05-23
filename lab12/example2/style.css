@@ -1,0 +1,34 @@
+body {
+    width: 550px;
+    margin: 0;
+    padding: 0 10px;
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+h1 {
+    font-size: 26px;
+    background-color: #bbbbbb; /* 1-й пункт задания (неверный): добавить одному из элементов на странице свойство, меняющее цвет фона background-color: #333333; */
+    color: white; /* 2-й пункт задания: сменить у одного из элементов цвет текста на color: white; */
+}
+
+p {
+    width: 380px; /* 3-й пункт задания: подобрать правильное значение ширины width у абзаца(значение кратно 10 и меньше 500px); */
+    padding: 15px 20px;
+    color: black;
+}
+
+q { /* 4-й пункт задания (неверный): добавить правило с заданием цвета текста color (неверный): orange; */
+    color: green;
+}
+
+.new { /* 5-й пункт задания: подобрать нужные селекторы к двум правилам selector. */
+    border: 5px solid orange;
+}
+
+img {
+    margin-right: 10px;
+    vertical-align: top;
+    border-radius: 20px;
+}
