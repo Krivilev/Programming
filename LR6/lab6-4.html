@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кривилев Алексей</title>
+</head>
+<body>
+    <script>
+        class Keyboard {
+            constructor(type, switching_technology, purpose, connection_interface) {
+                this.type = type;
+                this.switching_technology = switching_technology;
+                this.purpose = purpose;
+                this.connection_interface = connection_interface;
+            }
+
+            get getMoreInformation() {
+                return `${this.type}; ${this.switching_technology}; ${this.purpose}; ${this.connection_interface}`;
+            }
+            set getMoreInformation(value) {
+                let buf = value.split(" ");
+                this.type = buf[0];
+                this.switching_technology = buf[1];
+                this.purpose = buf[2];
+                this.connection_interface = buf[3];
+            }
+            showInformation() {
+                console.log(`Клавиатура 
+                    >Тип: ${this.type}
+                    >Технология подключения: ${this.switching_technology}
+                    >Назначение: ${this.purpose}
+                    >Интерфейс подключения: ${this.connection_interface}
+            `);
+            }
+        }
+
+        class ReleaseKeyboard extends Keyboard {
+            constructor(date, price, type, switching_technology, purpose, connection_interface) {
+                super(type, switching_technology, purpose, connection_interface);
+                this.releaseDate = date;
+                this.price = price;
+            }
+
+            showInformation() {
+                console.log(`Клавиатура: 
+                    #Дата выпуска -> ${this.releaseDate}
+                    #Цена -> ${this.price}
+                    #Тип -> ${this.type}
+                    #Технология подключения -> ${this.switching_technology}
+                    #Назначение -> ${this.purpose}
+                    #Интерфейс подключения -> ${this.connection_interface}
+            `);
+            }
+        }
+
+        let keyboard1 = new ReleaseKeyboard("01.11.2020", 2500, "mechanical", "switches", "typing", "PS/2");
+        keyboard1.showInformation();
+    </script>
+</body>
+</html>

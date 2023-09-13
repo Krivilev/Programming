@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кривилев Алексей</title>
+</head>
+<body>
+    <script>
+        function Keyboard(type, switching_technology, purpose, connection_interface) {
+            this.type = type;
+            this.switching_technology = switching_technology;
+            this.purpose = purpose;
+            this.connection_interface = connection_interface;
+        }
+
+        Object.defineProperties(Keyboard.prototype, {
+            "getMoreInformation": {
+                get() {
+                    return `${this.type}; ${this.switching_technology}; ${this.purpose}; ${this.connection_interface}`;
+                },
+                set (value) {
+                    let buf = value.split(" ");
+                    this.type = buf[0];
+                    this.switching_technology = buf[1];
+                    this.purpose = buf[2];
+                    this.connection_interface = buf[3];
+                }
+            }
+        })
+
+        Keyboard.prototype.releaseDate = "00.00.0000";
+        Keyboard.prototype.showInformation = function () {
+            console.log(`Клавиатура 
+                >Тип: ${this.type}
+                >Технология подключения: ${this.switching_technology}
+                >Назначение: ${this.purpose}
+                >Интерфейс подключения: ${this.connection_interface}
+            `);
+        }
+    </script>
+</body>
+</html>

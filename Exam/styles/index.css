@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    display: inline-block;
+    padding: 10px;
+}
+
+input {
+    padding: 8px;
+    font-size: 16px;
+}
+
+button {
+    padding: 8px;
+    font-size: 16px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.error {
+    display: none;
+    color: red;
+    font-weight: bold;
+}
+.visible {
+    display: block;
+}
+
+form {
+    margin: 20px 0;
+    padding: 10px;
+}
+form > * {
+    display: block;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+label input[type=text],
+label input[type=password],
+label input[type=email] {
+    margin-top: 5px;
+}
+
+input[type=text],
+input[type=password],
+input[type=email] {
+    margin-bottom: 5px;
+}
+
+.test label {
+    flex-direction: row;
+    color: white;
+    background: gray;
+    cursor: pointer;
+}
+.test label input {
+    margin-right: 10px;
+}
+
+.container > a {
+    display: block;
+    font-size: 18px;
+    padding: 5px 20px;
+    color: black;
+    text-align: center;
+    width: 100px;
+    margin: 10px 0;
+    background: orange;
+}

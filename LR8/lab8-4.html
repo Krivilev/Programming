@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кривилев Алексей</title>
+</head>
+<body>
+    <style>
+        th, td {
+            border: 1px solid #000000;
+            padding: 5px 10px;
+            text-align: center;
+        }
+        #modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .5);
+        }
+        .modal-content {
+            background: white;
+            padding: 50px;
+        }
+    </style>
+    <button onclick="showModal()">Открыть модальное окно</button>
+    <table id="table">
+        <tr>
+            <th>Тип</th>
+            <th>Технология подключения</th>
+            <th>Назначение</th>
+            <th>Интерфейс подключения</th>
+        </tr>
+    </table>
+
+    <div id="modal">
+        <div class="modal-content">
+            <form id="form">
+                <label>Тип:</label><br>
+                <input type="string" value="mechanical"><br><br>
+
+                <label>Технология подключения:</label><br>
+                <select>
+                    <option value="switches">Механические переключатели</option>
+                    <option value="multimedia">Мультимедийные клавиши</option>
+                    <option value="macros">Макросы и программируемые клавиши</option>
+                </select>
+                <br><br>
+
+                <label>Назначение:</label><br>
+                <input type="string" value="gaming"><br><br>
+
+                <label>Интерфейс подключения:</label><br>
+                <input type="string" value="PS/2"><br><br>
+            
+                <button type="button" onclick="addDevice()">Добавить устройство</button>
+            </form>
+            <button onclick="hideModal()">Скрыть окно</button>
+        </div>
+    <script>
+        const form = document.forms[0];
+
+        class Keyboard {
+            constructor(type, switching_technology, purpose, connection_interface) {
+                this.type = type;
+                this.switching_technology = switching_technology;
+                this.purpose = purpose;
+                this.connection_interface = connection_interface;
+            }
+        }
+        const keyboardArr = [];
+
+        function addDevice () {
+            const type = form.elements[0].value;
+            const switching_technology = form.elements[1].value;
+            const purpose = form.elements[2].value;
+            const connection_interface = form.elements[3].value;
+
+            keyboardArr.push(new Keyboard(type, switching_technology, purpose, connection_interface));
+            addRow();
+            form.reset();
+        }
+
+        function addRow() {
+            const table = document.getElementById("table");
+            table.innerHTML = "<tr><th>Тип</th><th>Технология подключения</th><th>Назначение</th><th>Интерфейс подключения</th></tr>";
+
+            for (let i = 0; i < keyboardArr.length; i++) {
+                let keyboard = keyboardArr[i];
+                let row = table.insertRow(-1);
+                let type = row.insertCell(0);
+                let switching_technology = row.insertCell(1);
+                let purpose = row.insertCell(2);
+                let connection_interface = row.insertCell(3);
+
+                type.innerHTML = keyboard.type;
+                switching_technology.innerHTML = keyboard.switching_technology;
+                purpose.innerHTML = keyboard.purpose;
+                connection_interface.innerHTML = keyboard.connection_interface;
+            }
+        }
+
+        function showModal() {
+            const modal = document.getElementById("modal");
+            modal.style.display = "flex";
+        }
+        function hideModal() {
+            const modal = document.getElementById("modal");
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кривилев Алексей</title>
+</head>
+<body>
+    <script>
+        let arr = [];
+        let plusOrMinus = 1;
+        let sum = 0;
+        let count = 0;
+        let averageNumber = 0;
+
+        for (let i = 0; i < 15; i++) {
+            if (Math.random() < 0.5) {
+                plusOrMinus = -1;
+            } else {
+                plusOrMinus = 1;
+            }
+            arr.push(Math.floor(Math.random() * 100) * plusOrMinus);
+        }
+        document.write(`<p>Массив: ${arr.join(" ")}</p>`);
+            
+        let negativeArr = arr.filter((a) => {
+            return a < 0;
+        })
+        sum = negativeArr.reduce((acc, current) => {
+            return acc + current;
+        }, 0);
+
+        document.write(`<p>Среднее арифметическое отрицательных чисел: ${sum / negativeArr.length}</p>`);
+    </script>
+</body>
+</html>

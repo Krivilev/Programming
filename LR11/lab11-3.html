@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Кривилев Алексей</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<style>
+    table td{
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #000000;
+    }
+</style>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>Курс Финляндии к Мексике</td>
+        <td>Курс Финляндии к Польше</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    const baseURL = "https://api.nbrb.by/exrates/rates/";
+    const tbody = $("tbody > tr > td");
+
+    async function getCourse() {
+        const responseMongolia = await fetch(baseURL + 451);
+        const responseMexico = await fetch(baseURL + 484);
+        const responsePoland = await fetch(baseURL + 452);
+
+        const resultMongolia = await responseMongolia.json();
+        const resultMexico = await responseMexico.json();
+        const resultPoland = await responsePoland.json();
+
+        const resultMongoliaRate = resultMongolia.Cur_OfficialRate;
+        const resultMexicoRate = resultMexico.Cur_OfficialRate;
+        const resultPolandRate = resultPoland.Cur_OfficialRate;
+
+        tbody[0].innerHTML = (resultMongoliaRate / resultMexicoRate).toFixed(5);
+        tbody[1].innerHTML = (resultMongoliaRate / resultPolandRate).toFixed(5);
+    }
+
+    getCourse();
+</script>
+</body>
+</html>

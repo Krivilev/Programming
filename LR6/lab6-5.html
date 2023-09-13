@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кривилев Алексей</title>
+</head>
+<body>
+    <script>
+        class Keyboard {
+            constructor(type, switching_technology, purpose, connection_interface) {
+                this.type = type;
+                this.switching_technology = switching_technology;
+                this.purpose = purpose;
+                this.connection_interface = connection_interface;
+            }
+
+            get getMoreInformation() {
+                return `${this.type}; ${this.switching_technology}; ${this.purpose}; ${this.connection_interface}`;
+            }
+            set getMoreInformation(value) {
+                let buf = value.split(" ");
+                this.type = buf[0];
+                this.switching_technology = buf[1];
+                this.purpose = buf[2];
+                this.connection_interface = buf[3];
+            }
+            showInformation() {
+                console.log(`Клавиатура 
+                    >Тип: ${this.type}
+                    >Технология подключения: ${this.switching_technology}
+                    >Назначение: ${this.purpose}
+                    >Интерфейс подключения: ${this.connection_interface}
+            `);
+            }
+        }
+        class ReleaseKeyboard extends Keyboard {
+            constructor(date, price, type, switching_technology, purpose, connection_interface) {
+                super(type, switching_technology, purpose, connection_interface);
+                this.releaseDate = date;
+                this.price = price;
+            }
+
+            showInformation() {
+                console.log(`Клавиатура: 
+                    #Дата выпуска -> ${this.releaseDate}
+                    #Цена -> ${this.price}
+                    #Тип -> ${this.type}
+                    #Технология подключения -> ${this.switching_technology}
+                    #Назначение -> ${this.purpose}
+                    #Интерфейс подключения -> ${this.connection_interface}
+            `);
+            }
+        }
+    
+        let keyboardArr = [];
+
+        keyboardArr.push(new ReleaseKeyboard("01.11.2020", 3500, "mechanical", "switches", "typing", "PS/2"));
+        keyboardArr.push(new ReleaseKeyboard("02.05.2020", 2600, "membrane", "switches", "typing", "PS/2"));
+        keyboardArr.push(new ReleaseKeyboard("30.03.2020", 5500, "mechanical", "switches", "gaming", "PS/2"));
+        keyboardArr.push(new ReleaseKeyboard("15.04.2020", 7000, "mechanical", "switches", "typing", "PS/2"));
+        keyboardArr.push(new ReleaseKeyboard("05.12.2020", 14500, "membrane", "switches", "gaming", "PS/2"));
+
+        let expensiveKeyboard = keyboardArr[0];
+        let cheapKeyboard = keyboardArr[0];
+        let totalSum = keyboardArr.reduce((acc, value) => {
+            return acc += value.price
+        }, 0);
+        let averageSum = totalSum / keyboardArr.length;
+
+        keyboardArr.forEach((keyboard) => {
+            if (expensiveKeyboard.price < keyboard.price) {
+                expensiveKeyboard = keyboard;
+            }
+        })
+        keyboardArr.forEach((keyboard) => {
+            if (cheapKeyboard.price > keyboard.price) {
+                cheapKeyboard = keyboard;
+            }
+        })
+
+        console.log('Дешевая клавиатура = ', cheapKeyboard);
+        console.log('Дорогая клавиатура = ', expensiveKeyboard);
+        console.log('Итоговая сумма = ', totalSum);
+        console.log('Средняя сумма = ', averageSum);
+        console.log('Количество объектов состоимостью выше средней: ', keyboardArr.filter((keyboard) => {
+            return keyboard.price > averageSum
+        }).length)
+   </script>
+</body>
+</html>

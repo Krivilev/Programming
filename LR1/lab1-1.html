@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кривилев Алексей</title>
+</head>
+<body>
+    <script>
+        let firstPrice = Number(prompt("Цена первого товара"));
+        if (firstPrice < 0) {
+            firstPrice = 0;
+        }
+        let secondPrice = Number(prompt("Цена второго товара"));
+        if (secondPrice < 0) {
+            secondPrice = 0;
+        }
+        let discount = Number(prompt("Размер скидки"));
+        if (discount < 0) {
+            discount = 1;
+        }
+        if (discount > 5) {
+            discount = 5;
+        }
+        let sum = firstPrice + secondPrice;
+        let discountSum = sum / 100 * discount;
+
+        document.write('<div style="border:1px solid #000; width:300px;">');
+        document.write('<p style="margin: 0px;">ООО "Евроторг"</p>');
+        document.write('<p style="margin: 0px; text-transform: uppercase; font-weight: bold; text-align: center; font-size: 18px">Спасибо за покупку!</p>');
+        document.write(`<p style="margin: 0px;">Дата покупки: ${new Date(Date.now()).toLocaleDateString("ru")} ${new Date().getHours()}:${new Date().getMinutes()}</p>`);
+        document.write("<br></br>")
+        document.write('<p style="margin: 0px;">Наименование товара</p>');
+        document.write('<span style="margin: 0px; display: inline-block; width: 10%; padding-left: 10px">1</span>');
+        document.write(`<span style="margin: 0px; display: inline-block; text-align: right; width: 80%">=${firstPrice}</span>`);
+        document.write('<p style="margin: 0px;">Наименование товара</p>');
+        document.write('<span style="margin: 0px; display: inline-block; width: 10%; padding-left: 10px">1</span>');
+        document.write(`<span style="margin: 0px; display: inline-block; text-align: right; width: 80%">=${secondPrice}</span>`);
+        document.write('<p style="margin: 0px; margin-top: 10px; text-transform: uppercase; font-weight: bold; font-size: 18px">Итого</p>');
+        document.write(`<p style="margin: 0px; text-transform: uppercase; font-weight: bold; text-align: center; font-size: 18px">${sum} byn</p>`);
+        document.write(`<p style="margin: 0px;">Ваша скидка: ${discount}%</p>`);
+        document.write(`<p style="margin: 0px; text-transform: uppercase; text-align: center;">${discountSum} byn</p>`);
+        document.write('<p style="margin: 0px; text-transform: uppercase; font-weight: bold; font-size: 18px">Сумма со скидкой</p>');
+        document.write(`<p style="margin: 0px; text-transform: uppercase; font-weight: bold; text-align: center; font-size: 18px">${sum - discountSum} byn</p>`);
+        document.write('</div>');
+    </script>
+</body>
+</html>

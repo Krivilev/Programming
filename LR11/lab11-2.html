@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Кривилев Алексей</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<style>
+    table td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #000000;
+    }
+
+</style>
+<body>
+<div>
+    от <input type="date" id="start"> до <input type="date" id="end">
+</div>
+<br>
+<button onclick="loadTableInfo()">Построить таблицу</button>
+<br>
+<table>
+    <thead>
+    <tr>
+        <td>Дата</td>
+        <td>Валюта</td>
+        <td>Курс</td>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+    const baseURL = "https://api.nbrb.by/exrates/rates/451";
+    const tbody = $("tbody");
+
+    function loadTableInfo() {
+        const startDate = $("#start").val();
+        const endDate = $("#end").val();
+
+        const arr = getDateArray(startDate, endDate);
+        const promisses = arr.map(date => {
+            return fetch(baseURL + "?ondate=" + date).then(resolve => resolve.json());
+        });
+
+        Promise.all(promisses).then(data => {
+            data.forEach(d => {
+                if (d.status !== 404) {
+                    addTr(d, tbody)
+                }
+            })
+        })
+    }
+
+    function getDateArray(start, end) {
+        const currentDate = new Date(start);
+        const endDate = new Date(end);
+        const dates = [];
+
+        while (currentDate <= endDate) {
+            dates.push(formatDate(currentDate));
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+
+        return dates;
+    }
+
+    function formatDate(date) {
+        let year = date.getFullYear();
+        let month = ("0" + (date.getMonth() + 1)).slice(-2);
+        let day = ("0" + date.getDate()).slice(-2);
+        return `${year}-${month}-${day}`;
+    }
+
+    function addTr(resolve, tbody) {
+        tbody.append(`<tr>
+            <td>${formatDate(new Date(resolve.Date))}</td>
+            <td>${resolve.Cur_Abbreviation}</td>
+            <td>${resolve.Cur_OfficialRate}</td>
+        </tr>`)
+    }
+</script>
+</body>
+</html>

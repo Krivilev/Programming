@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кривилев Алексей</title>
+</head>
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            overflow: hidden;
+        }
+        #block_container {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            animation: rotate 1s linear infinite;
+            z-index: 1;
+        }
+        #block {
+            width: 100px;
+            height: 100px;
+            background: red;
+            border-radius: 50%;
+        }
+        @keyframes rotate {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotateZ(360deg);
+            }
+        }
+    </style>
+    <div id="block_container">
+        <div id="block"></div>
+    </div>
+    <script>
+        const blockContainer = document.getElementById("block_container");
+        let x;
+        let y;
+
+        window.addEventListener("mousemove", function (event) {
+            y = event.clientY;
+            x = event.clientX;
+        })
+
+        function draw () {
+            requestAnimationFrame(draw);
+            blockContainer.style.top = y + "px";
+            blockContainer.style.left = x + "px";
+        }
+
+        draw();
+    </script>
+</body>
+</html>

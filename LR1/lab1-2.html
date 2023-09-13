@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кривилев Алексей</title>
+</head>
+<body>
+    <script>
+        let R = Number(prompt("Внешний радиус R"));
+        let r = Number(prompt("Внутренний радиус r"));
+        let S = Math.PI * (R * R - r * r);
+        let x = Number(prompt("x"));
+        let y = Number(prompt("x"));
+        let z = Number(prompt("z"));
+        let b = Math.abs(x - y) * (Math.pow(Math.sin(z), 2) + Math.tan(z));
+
+
+        document.write(`<p>R = ${R}</p>`);
+        document.write(`<p>r = ${r}</p>`);
+        document.write('<img src="images/1.png">')
+        document.write(`<p style="margin: 0px; font-weight: bold;">Ответ: S = ${S}</p>`);
+        document.write(`<p>x = ${x}</p>`);
+        document.write(`<p>y = ${y}</p>`);
+        document.write(`<p>z = ${z}</p>`);
+        document.write('<img src="images/2.png">')
+        document.write(`<p style="margin: 0px; font-weight: bold;">Ответ: b = ${b}</p>`);
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кривилев Алексей</title>
+</head>
+<body>
+    <script>
+        let treug = [];
+        let kvd = [];
+        let rez = [];
+
+        for (let i = 1; i <= 10; i++) {
+            treug.push(i * (i + 1) / 2);
+        }
+        document.write(`<p>treug: ${treug.join("\xa0\xa0")}</p>`);
+    
+        for (let i = 1; i <= 10; i++) {
+            kvd.push(i * i);
+        }
+        document.write(`<p>kvd: ${kvd.join(" ")}</p>`);
+
+        rez = treug.concat(kvd);
+        document.write(`<p>rez: ${rez.join(" ")}</p>`);
+        
+        document.write(`<p>rez: ${rez.sort(function (a, b) {
+            return b - a;
+        }).join(" ")}</p>`);
+    </script>
+</body>
+</html>
